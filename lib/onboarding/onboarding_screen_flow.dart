@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import '../screens/login_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'dart:async';
 
 class OnboardingScreenFlow extends StatefulWidget {
   const OnboardingScreenFlow({super.key});
@@ -8,20 +10,29 @@ class OnboardingScreenFlow extends StatefulWidget {
   State<OnboardingScreenFlow> createState() => _OnboardingScreenFlowState();
 }
 
+
 class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+  bool _isFirstPageLoading = true;
+  Timer? _loadingTimer;
 
   final List<Map<String, String>> _onboardingData = [
     {
+      'title': '',
+      'description': '',
+      'imagePath': "assets/images/snapbit_updated_logo.png",
+    },
+    {
       'title': 'We serve incomparable delicacies',
-      'description': 'All the best restaurants with their top menu waiting for you, they can\'t wait for your order!!',
-      'imagePath': "assets/images/onboarding1.png",
+      'description':
+          'All the best restaurants with their top menu waiting for you, they can\'t wait for your order!!',
+      'imagePath': "assets/images/onboarding11.png",
     },
     {
       'title': 'Stay Connected',
       'description': 'Connect with friends and family easily.',
-      'imagePath': "assets/images/onboarding2.png",
+      'imagePath': "assets/images/onboarding4.png",
     },
     {
       'title': 'Get Started',
@@ -30,21 +41,50 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
     },
   ];
 
-  void _onNextPressed() {
-    if (_currentPage < _onboardingData.length - 1) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeIn,
-      );
-    } else {
-      // Navigate to the main app screen or complete the onboarding
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        ),
-      );
+  @override
+  void initState() {
+    super.initState();
+    if (_currentPage == 0) {
+      _loadingTimer = Timer(const Duration(seconds: 2), () {
+        if (mounted) {
+          setState(() {
+            _isFirstPageLoading = false;
+          });
+          // Move to the first onboarding screen after loading
+          _pageController.nextPage(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeIn,
+          );
+        }
+      });
     }
   }
+
+      void _onNextPressed() {
+        if (_currentPage < _onboardingData.length - 1) {
+          _pageController.nextPage(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeIn,
+          );
+          if (_currentPage == 0) {
+            setState(() {
+              _isFirstPageLoading = true;
+            });
+            _loadingTimer?.cancel();
+            _loadingTimer = Timer(const Duration(seconds: 2), () {
+              if (mounted) {
+                setState(() {
+                  _isFirstPageLoading = false;
+                });
+              }
+            });
+          }
+        } else {
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => const LoginScreen()));
+        }
+      }
 
   void _markOnboardingComplete() {
     // Placeholder for onboarding completion logic, e.g., saving to shared preferences
@@ -52,6 +92,7 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
 
   @override
   void dispose() {
+    _loadingTimer?.cancel();
     _pageController.dispose();
     super.dispose();
   }
@@ -61,7 +102,6 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
     return Scaffold(
       body: Stack(
         children: [
-          // Full-screen background image
           Positioned.fill(
             child: PageView.builder(
               controller: _pageController,
@@ -69,6 +109,19 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
               onPageChanged: (index) {
                 setState(() {
                   _currentPage = index;
+                  if (_currentPage == 0) {
+                    _isFirstPageLoading = true;
+                    _loadingTimer?.cancel();
+                    _loadingTimer = Timer(const Duration(seconds: 2), () {
+                      if (mounted) {
+                        setState(() {
+                          _isFirstPageLoading = false;
+                        });
+                      }
+                    });
+                  } else {
+                    _isFirstPageLoading = false;
+                  }
                 });
               },
               itemBuilder: (context, index) {
@@ -79,96 +132,124 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
               },
             ),
           ),
-          // Orange card with content
-          Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.9, // 90% of screen width
-              height: MediaQuery.of(context).size.height * 0.6, // 60% of screen height
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    _onboardingData[_currentPage]['title']!,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
+          if (_currentPage != 0)
+            Positioned(
+              bottom: MediaQuery.of(context).size.height * 0.06,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFE8C00),
+                    borderRadius: BorderRadius.circular(40),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text(
-                      _onboardingData[_currentPage]['description']!,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  // Pagination dots
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      _onboardingData.length,
-                      (index) => Container(
-                        width: 10,
-                        height: 10,
-                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: index == _currentPage ? Colors.white : Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Buttons inside the card
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      TextButton(
-                        onPressed: () {
-                          _markOnboardingComplete();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => const LoginScreen()),
-                          );
-                        },
-                        child: const Text(
-                          "Skip",
-                          style: TextStyle(
-                            color: Colors.white,
+                      Text(
+                        _onboardingData[_currentPage]['title']!,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Text(
+                          _onboardingData[_currentPage]['description']!,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                          _onboardingData.length,
+                          (index) => Container(
+                            width: 15,
+                            height: 15,
+                            margin: const EdgeInsets.symmetric(horizontal: 5),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: index == _currentPage
+                                  ? Colors.white
+                                  : Colors.grey,
+                            ),
                           ),
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: _onNextPressed,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: Colors.orange,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              _markOnboardingComplete();
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginScreen(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "Skip",
+                              style: GoogleFonts.openSans(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          _currentPage == _onboardingData.length - 1 ? 'Get Started' : 'Next',
-                          style: const TextStyle(
-                            color: Colors.orange,
+                          GestureDetector(
+                            onTap: _onNextPressed,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  _currentPage == _onboardingData.length - 1
+                                      ? 'Get Started'
+                                      : 'Next',
+                                  style: GoogleFonts.openSans(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
+              ),
+            )
+          else if (_isFirstPageLoading)
+            const Center(child: CircularProgressIndicator())
+          else
+            Center(
+              child: Image.asset(
+                _onboardingData[0]['imagePath']!,
+                fit: BoxFit.contain,
+                width: MediaQuery.of(context).size.width * 0.5,
               ),
             ),
-          ),
         ],
       ),
     );
