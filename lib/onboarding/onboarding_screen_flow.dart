@@ -52,7 +52,7 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
           });
           // Move to the first onboarding screen after loading
           _pageController.nextPage(
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 600),
             curve: Curves.easeIn,
           );
         }
@@ -244,10 +244,29 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
             const Center(child: CircularProgressIndicator())
           else
             Center(
-              child: Image.asset(
-                _onboardingData[0]['imagePath']!,
-                fit: BoxFit.contain,
+              child: Container(
                 width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.width * 0.5,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                child: ClipOval(
+                  child: Image.asset(
+                    _onboardingData[0]['imagePath']!,
+                    fit: BoxFit.contain,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.width * 0.4,
+                  ),
+                ),
               ),
             ),
         ],
