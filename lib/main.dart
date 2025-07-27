@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
           bodyMedium: textFont,
           bodyLarge: textFont,
           bodySmall: textFont,
-          headlineMedium: textFont,
+         
+         
           headlineLarge: textFont,
           headlineSmall: textFont,
           labelLarge: textFont,

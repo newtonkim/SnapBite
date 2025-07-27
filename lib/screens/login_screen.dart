@@ -1,20 +1,147 @@
 import 'package:flutter/material.dart';
-class LoginScreen extends StatefulWidget {
+
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
-      body: Center(
-        child: Text('Login Screen'),
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Login to your',
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w800,
+                color: Colors.black,
+                fontSize: 26,
+              ),
+            ),
+            Text(
+              'account.',
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w800,
+                color: Colors.black,
+                fontSize: 26,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Please sign in to your account',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: Colors.grey,
+                fontSize: 10,
+              ),
+            ),
+            const SizedBox(height: 18),
+            Text(
+              'Email Address',
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Enter Email',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'Password',
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 8),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: 'Password',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Forgot password?',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: Colors.orange,
+                    fontSize: 12,
+                    
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(26),
+                  ),
+                ),
+                child: Text(
+                  'Sign In',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Center(
+              child: Text(
+                'Or sign in with',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            const Spacer(),
+            Center(
+              child: TextButton(
+                onPressed: () {},
+                child: Text.rich(
+                  TextSpan(
+                    text: "Don't have an account? ",
+                    style: theme.textTheme.bodySmall,
+                    children: [
+                      TextSpan(
+                        text: 'Register',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

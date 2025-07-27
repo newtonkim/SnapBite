@@ -34,7 +34,7 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
       imagePath: "assets/images/family_time.png",
     ),
     OnboardingData(
-      title: 'Get Started',
+      title: 'Place your order we deliver it at your doorstep',
       description: 'Sign up now to enjoy all the benefits.',
       imagePath: "assets/images/onboarding3.png",
     ),
@@ -75,11 +75,15 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
     }
   }
 
+  // void _navigateToLogin() {
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => const LoginScreen()),
+  //   );
+  // }
+
   void _navigateToLogin() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
-    );
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   void _onPageChanged(int index) {
@@ -222,8 +226,8 @@ class _OnboardingScreenFlowState extends State<OnboardingScreenFlow> {
       right: 0,
       child: Center(
         child: Container(
-          width: size.width * 0.65,
-          height: size.height * 0.65,
+          width: size.width * 0.55,
+          height: size.height * 0.55,
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: const Color(0xFFFE8C00),
