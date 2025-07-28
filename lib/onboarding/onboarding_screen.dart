@@ -35,6 +35,9 @@ class OnboardingScreen extends StatelessWidget {
           SizedBox(height: spacing / 2),
           // Description with default style fallback
           _buildDescription(context),
+          SizedBox(height: spacing),
+          // Social login row with CircleAvatar and border
+          _buildSocialLoginRow(),
         ],
       ),
     );
@@ -79,6 +82,34 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildSocialLoginRow() {
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 42, // 2 * radius + 2 * borderWidth (20*2 + 1*2)
+            height: 42,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.grey, width: 1.0),
+            ),
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.white,
+              child: Image.asset(
+                'assets/images/google_my_choice.png',
+                height: 40,
+                width: 40,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   // Default title style
   TextStyle _defaultTitleStyle(BuildContext context) {
     return Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -102,4 +133,5 @@ class OnboardingScreen extends StatelessWidget {
           color: Colors.grey,
         );
   }
+
 }

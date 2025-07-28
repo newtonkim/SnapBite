@@ -7,6 +7,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -59,8 +60,8 @@ class LoginScreen extends StatelessWidget {
               'Password',
               style: theme.textTheme.labelSmall?.copyWith(
                 color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
               ),
             ),
             const SizedBox(height: 8),
@@ -82,8 +83,8 @@ class LoginScreen extends StatelessWidget {
                   'Forgot password?',
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: Colors.orange,
+                    fontWeight: FontWeight.w400,
                     fontSize: 12,
-                    
                   ),
                 ),
               ),
@@ -111,28 +112,61 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Center(
-              child: Text(
-                'Or sign in with',
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: Colors.grey,
-                ),
+              child: Row(
+                children: [
+                  Expanded(child: Divider(thickness: 0.5, color: Colors.grey)),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      'Or sign in with',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  Expanded(child: Divider(thickness: 0.5, color: Colors.grey)),
+                ],
               ),
             ),
-            const SizedBox(height: 24),
-            const Spacer(),
+            const SizedBox(height: 10),
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/google_my_choice.png',
+                  height: 40,
+                  width: 40,
+                ),
+                const SizedBox(width: 10),
+                // Image.asset(
+                //   'assets/images/facebook.png',
+                //   height: 40,
+                //   width: 40,
+                // ),
+              ],
+            ),
+
+            const SizedBox(height: 10),
             Center(
               child: TextButton(
                 onPressed: () {},
                 child: Text.rich(
                   TextSpan(
                     text: "Don't have an account? ",
-                    style: theme.textTheme.bodySmall,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
+                    ),
                     children: [
                       TextSpan(
                         text: 'Register',
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w800,
+                          color: Colors.orange,
+                          fontSize: 12,
                         ),
                       ),
                     ],

@@ -50,6 +50,9 @@ flutter:
     - assets/images/family_time.png
     - assets/images/onboarding3.png
     - assets/images/onboarding11.png
+    - assets/images/google_my_choice.png
+    - assets/images/facebook_logo.png
+    - assets/images/apple_logo.png
     - assets/images/snapbit_updated_logo.png
     - assets/images/delicious-burger-with-fresh-ingredients.jpg
     # - assets/images/snapbit_updated_logo.png.jpeg
