@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../utils/constants.dart';
 import '../models/onboarding_data.dart';
-import '../screens/login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OnboardingScreenFlow extends StatefulWidget {
