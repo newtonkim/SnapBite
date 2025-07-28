@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,7 @@ class LoginScreen extends StatelessWidget {
               'Please sign in to your account',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: Colors.grey,
-                fontSize: 10,
+                fontSize: 14,
               ),
             ),
             const SizedBox(height: 18),
@@ -50,30 +57,54 @@ class LoginScreen extends StatelessWidget {
             TextField(
               decoration: InputDecoration(
                 hintText: 'Enter Email',
+                hintStyle: TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),
+
+        
             const SizedBox(height: 24),
             Text(
               'Password',
               style: theme.textTheme.labelSmall?.copyWith(
                 color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
               ),
             ),
             const SizedBox(height: 8),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: 'Password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+              TextField(
+                obscureText: _obscureText,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  ),
                 ),
               ),
-            ),
+            
+            
             const SizedBox(height: 8),
             Align(
               alignment: Alignment.centerRight,
@@ -83,8 +114,8 @@ class LoginScreen extends StatelessWidget {
                   'Forgot password?',
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: Colors.orange,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
                   ),
                 ),
               ),
@@ -122,7 +153,7 @@ class LoginScreen extends StatelessWidget {
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: Colors.grey,
                         fontWeight: FontWeight.w400,
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                   ),
@@ -130,25 +161,68 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/images/google_my_choice.png',
-                  height: 40,
-                  width: 40,
+                Container(
+                  width: 42, // 2 * radius + 2 * borderWidth (20*2 + 1*2)
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.5),
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.grey, width: 1.0),
+                  ),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/google_my_choice.png',
+                      height: 35,
+                      width: 35,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
-                const SizedBox(width: 10),
-                // Image.asset(
-                //   'assets/images/facebook.png',
-                //   height: 40,
-                //   width: 40,
-                // ),
+                const SizedBox(width: 15),
+                Container(
+                  width: 42, // 2 * radius + 2 * borderWidth (20*2 + 1*2)
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.5),
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.grey, width: 1.0),
+                  ),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/facebook_logo.png',
+                      height: 20,
+                      width: 20,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+
+                const SizedBox(width: 15),
+                Container(
+                  width: 42, // 2 * radius + 2 * borderWidth (20*2 + 1*2)
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.5),
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.grey, width: 1.0),
+                  ),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/apple_logo.png',
+                      height: 20,
+                      width: 20,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
               ],
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
             Center(
               child: TextButton(
                 onPressed: () {},
@@ -157,8 +231,8 @@ class LoginScreen extends StatelessWidget {
                     text: "Don't have an account? ",
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
                     ),
                     children: [
                       TextSpan(
@@ -166,7 +240,7 @@ class LoginScreen extends StatelessWidget {
                         style: theme.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w800,
                           color: Colors.orange,
-                          fontSize: 12,
+                          fontSize: 14,
                         ),
                       ),
                     ],
