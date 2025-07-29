@@ -137,33 +137,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-            const SizedBox(height: 8),
-            
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                    (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.hovered)) {
-                        return Colors.transparent;
-                      }
-                      return null;
-                    },
-                  ),
-                  shadowColor: MaterialStateProperty.all(Colors.transparent),
-                ),
-              ),
-            ),
+          
             const SizedBox(height: 24),
             Row(
               children: [
                 Container(
-                  // padding: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
-                    // border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: Checkbox(
                     value: _agreeToTerms,
@@ -182,6 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       text: 'I Agree with ',
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: Colors.black,
+                        fontWeight: FontWeight.w400,
                         fontSize: 14,
                       ),
                       children: [
@@ -189,6 +170,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           text: 'Terms of Service',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: Colors.orange,
+                            fontWeight: FontWeight.w400,
                             fontSize: 14,
                           ),
                         ),
@@ -196,6 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           text: ' and ',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: Colors.black,
+                            fontWeight: FontWeight.w400,
                             fontSize: 14,
                           ),
                         ),
@@ -228,7 +211,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   'Register',
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: Colors.white,
-                    fontSize: 12,
+                    fontSize: 14,
                   ),
                 ),
               ),
