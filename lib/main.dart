@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       title: 'SnapBite',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.robotoTextTheme().copyWith(
+        textTheme: GoogleFonts.notoSansTextTheme().copyWith(
           bodyMedium: textFont.copyWith(fontSize: 16, color: Colors.white),
           bodyLarge: textFont.copyWith(fontSize: 18, color: Colors.white),
           bodySmall: textFont.copyWith(fontSize: 14, color: Colors.white),

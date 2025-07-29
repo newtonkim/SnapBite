@@ -154,23 +154,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   shadowColor: MaterialStateProperty.all(Colors.transparent),
                 ),
-                child: Text(
-                  'Forgot password?',
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: Colors.orange,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                  ),
-                ),
               ),
             ),
             const SizedBox(height: 24),
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(2),
+                  // padding: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
+                    // border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Checkbox(
