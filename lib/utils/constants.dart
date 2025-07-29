@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
-final TextStyle textFont = GoogleFonts.roboto(
+final TextStyle textFont = GoogleFonts.notoSans(
   fontSize: 16,
   color: Colors.white,
 );

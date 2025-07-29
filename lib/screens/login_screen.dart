@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snapbit/screens/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,16 +23,16 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Text(
               'Login to your',
-              style: theme.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w800,
+              style: theme.textTheme.headlineLarge?.copyWith(
+                fontWeight: FontWeight.w600,
                 color: Colors.black,
                 fontSize: 26,
               ),
             ),
             Text(
               'account.',
-              style: theme.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w800,
+              style: theme.textTheme.headlineLarge?.copyWith(
+                fontWeight: FontWeight.w600,
                 color: Colors.black,
                 fontSize: 26,
               ),
@@ -241,7 +242,14 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 30),
             Center(
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterScreen(),
+                    ),
+                  );
+                },
                 style: ButtonStyle(
                   overlayColor: MaterialStateProperty.resolveWith<Color?>(
                     (Set<MaterialState> states) {
