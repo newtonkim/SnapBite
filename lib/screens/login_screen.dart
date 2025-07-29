@@ -55,6 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 8),
             TextField(
+              style: TextStyle(
+                color: Colors.black,
+              ),
               decoration: InputDecoration(
                 hintText: 'Enter Email',
                 hintStyle: TextStyle(
@@ -80,6 +83,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 8),
               TextField(
+                style: TextStyle(
+                  color: Colors.black,
+                ),
                 obscureText: _obscureText,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -103,13 +109,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-            
-            
             const SizedBox(height: 8),
+            
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {},
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.hovered)) {
+                        return Colors.transparent;
+                      }
+                      return null;
+                    },
+                  ),
+                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                ),
                 child: Text(
                   'Forgot password?',
                   style: theme.textTheme.labelSmall?.copyWith(
@@ -226,6 +242,17 @@ class _LoginScreenState extends State<LoginScreen> {
             Center(
               child: TextButton(
                 onPressed: () {},
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.hovered)) {
+                        return Colors.transparent;
+                      }
+                      return null;
+                    },
+                  ),
+                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                ),
                 child: Text.rich(
                   TextSpan(
                     text: "Don't have an account? ",
