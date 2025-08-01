@@ -13,7 +13,7 @@ void main() {
 
       final textButton = tester.widget<TextButton>(find.ancestor(of: forgotPasswordButton, matching: find.byType(TextButton)));
       final style = textButton.style;
-      expect(style?.overlayColor?.resolve({MaterialState.hovered}), Colors.transparent);
+      expect(style?.overlayColor?.resolve({WidgetState.hovered}), Colors.transparent);
     });
 
     testWidgets('Email and Password TextFields show entered text', (WidgetTester tester) async {
@@ -56,7 +56,7 @@ void main() {
 
       final textButton = tester.widget<TextButton>(find.ancestor(of: forgotPasswordButton, matching: find.byType(TextButton)));
       final style = textButton.style;
-      expect(style?.overlayColor?.resolve({MaterialState.hovered}), Colors.transparent);
+      expect(style?.overlayColor?.resolve({WidgetState.hovered}), Colors.transparent);
     });
 
     testWidgets('Login screen "account." text has fontWeight w600', (WidgetTester tester) async {

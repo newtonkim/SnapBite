@@ -244,6 +244,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   width: 42, // 2 * radius + 2 * borderWidth (20*2 + 1*2)
                   height: 42,
                   decoration: BoxDecoration(
+                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.5),
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.grey, width: 1.0),
@@ -262,6 +263,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   width: 42, // 2 * radius + 2 * borderWidth (20*2 + 1*2)
                   height: 42,
                   decoration: BoxDecoration(
+                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.5),
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.grey, width: 1.0),
@@ -281,6 +283,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   width: 42, // 2 * radius + 2 * borderWidth (20*2 + 1*2)
                   height: 42,
                   decoration: BoxDecoration(
+                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.5),
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.grey, width: 1.0),
@@ -309,15 +312,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   );
                 },
                 style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                    (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.hovered)) {
+                  overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                    (Set<WidgetState> states) {
+                      if (states.contains(WidgetState.hovered)) {
                         return Colors.transparent;
                       }
                       return null;
                     },
                   ),
-                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                  shadowColor: WidgetStateProperty.all(Colors.transparent),
                 ),
                 child: Text.rich(
                   TextSpan(

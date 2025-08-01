@@ -1,6 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:snapbit/screens/register_screen.dart';
-import 'package:snapbit/screens/forgot_password.dart';
 import 'package:snapbit/screens/email_verification.dart';
 
 class LoginScreen extends StatefulWidget { 
@@ -199,15 +200,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                   style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.hovered)) {
+                    overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.hovered)) {
                           return Colors.transparent;
                         }
                         return null;
                       },
                     ),
-                    shadowColor: MaterialStateProperty.all(Colors.transparent),
+                    shadowColor: WidgetStateProperty.all(Colors.transparent),
                   ),
                   child: Text(
                     'Forgot password?',
@@ -336,15 +337,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                   style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.hovered)) {
+                    overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.hovered)) {
                           return Colors.transparent;
                         }
                         return null;
                       },
                     ),
-                    shadowColor: MaterialStateProperty.all(Colors.transparent),
+                    shadowColor: WidgetStateProperty.all(Colors.transparent),
                   ),
                   child: Text.rich(
                     TextSpan(
@@ -400,26 +401,24 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Icon(icon, color: color, size: 20),
           ),
           const SizedBox(width: 12),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                Text(
-                  subtitle,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Colors.black.withOpacity(0.7),
-                        fontSize: 12,
-                      ),
-                ),
-              ],
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              Text(
+                subtitle,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.black.withOpacity(0.7),
+                      fontSize: 12,
+                    ),
+              ),
+            ],
           ),
         ],
       ),
